@@ -2,7 +2,18 @@
  * ĐỊNH NGHĨA KIỂU DỮ LIỆU CHO MARKETING PORTFOLIO & TRAVEL VLOG MOODBOARD
  */
 
-export type NavPage = 'home' | 'video-reels' | 'photo-diary' | 'roadmap' | 'services' | 'contact';
+export type NavPage = 
+  | 'home' 
+  | 'tiktok' 
+  | 'video-reels' 
+  | 'video-ugc' 
+  | 'marketing-plan' 
+  | 'ads' 
+  | 'design-ai' 
+  | 'photo-diary'
+  | 'roadmap'
+  | 'services'
+  | 'contact';
 
 export interface PhotoboothItem {
   id: string;
@@ -85,4 +96,36 @@ export interface ProfileInfo {
     bangkokCat: string;
     pinkDress: string;
   };
+}
+
+export interface FacebookReel {
+  id: string;
+  url: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  tag: string;
+  metrics?: string;
+}
+
+export interface FacebookPost {
+  id: string;
+  url: string;
+  title: string;
+  excerpt: string;
+  image?: string;
+  tag: string;
+  date?: string;
+}
+
+export interface FacebookBrandShowcase {
+  id: string;
+  name: string;
+  category: string;
+  logo: string;
+  roles: string[];
+  strategy: string;
+  colorScheme: 'matcha' | 'pink';
+  reels: FacebookReel[];
+  posts: FacebookPost[];
 }

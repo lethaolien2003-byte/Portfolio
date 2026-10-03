@@ -1,11 +1,12 @@
 import React from 'react';
-import { profileInfo } from '../../data/portfolioData.ts';
+import { useLanguage } from '../../context/LanguageContext.tsx';
 
 interface HeroSectionProps {
   onSelectPhoto?: (photo: { url: string; caption?: string; location?: string }) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
+  const { t } = useLanguage();
   const handlePhotoClick = (url: string, caption: string, location: string) => {
     if (onSelectPhoto) {
       onSelectPhoto({ url, caption, location });
@@ -14,11 +15,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
 
   return (
     <section 
+      className="hero-section"
       style={{
         position: 'relative',
-        minHeight: '100vh',
-        paddingTop: '135px',
-        paddingBottom: '90px',
+        paddingTop: '112px',
+        paddingBottom: '48px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -31,10 +32,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
           position: 'absolute',
           top: '2%',
           left: '8%',
-          width: '560px',
-          height: '560px',
+          width: '500px',
+          height: '500px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(110, 148, 93, 0.38) 0%, rgba(213, 228, 207, 0.2) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(110, 148, 93, 0.28) 0%, rgba(213, 228, 207, 0.14) 50%, transparent 70%)',
           filter: 'blur(75px)',
           zIndex: 0,
           pointerEvents: 'none'
@@ -43,225 +44,164 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
       <div 
         style={{
           position: 'absolute',
-          top: '25%',
+          top: '20%',
           right: '5%',
-          width: '520px',
-          height: '520px',
+          width: '460px',
+          height: '460px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255, 117, 151, 0.32) 0%, rgba(255, 230, 236, 0.2) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 117, 151, 0.25) 0%, rgba(255, 230, 236, 0.14) 50%, transparent 70%)',
           filter: 'blur(80px)',
           zIndex: 0,
           pointerEvents: 'none'
         }}
       />
-      <div 
-        style={{
-          position: 'absolute',
-          bottom: '5%',
-          left: '35%',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(85, 122, 70, 0.25) 0%, transparent 70%)',
-          filter: 'blur(70px)',
-          zIndex: 0,
-          pointerEvents: 'none'
-        }}
-      />
 
       <div 
         style={{
-          maxWidth: '1260px',
+          maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 24px',
+          padding: '0 20px',
           width: '100%',
           position: 'relative',
           zIndex: 2
         }}
       >
-        {/* Safari Search Bar Pill Widget */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <div className="safari-pill">
-            <span style={{ fontSize: '1rem', color: 'var(--matcha-primary)' }}>🍃</span>
-            <span style={{ fontWeight: 600, letterSpacing: '0.3px' }}>
-              thao lien le · travel vlog & aesthetic marketing portfolio ⋆*
-            </span>
-            <span style={{ fontSize: '0.95rem', color: 'var(--pink-primary)' }}>♡</span>
-          </div>
-        </div>
-
-        {/* Main Title Banner with Exact Text: Marketing Portfolio Thao Lien Le */}
-        <div style={{ textAlign: 'center', marginBottom: '46px' }}>
-          <div 
-            className="font-script float-sway"
-            style={{ 
-              fontSize: 'clamp(2.6rem, 5.5vw, 4.2rem)', 
-              color: 'var(--matcha-primary)', 
-              lineHeight: 1,
-              marginBottom: '-6px'
-            }}
-          >
-            Where green serenity meets visual poetry
-          </div>
-          
+        {/* Main Title Banner with Marketing Portfolio Thao Lien Le */}
+        <div className="hero-text-banner" style={{ textAlign: 'center', marginBottom: '56px' }}>
           <h1 
+            className="hero-main-title"
             style={{ 
-              fontSize: 'clamp(2.6rem, 6.2vw, 5.2rem)', 
+              fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', 
               fontWeight: 800, 
               color: 'var(--text-dark)', 
-              lineHeight: 1.08,
-              letterSpacing: '-1px'
+              lineHeight: 1.18,
+              letterSpacing: '-0.5px',
+              marginBottom: '16px'
             }}
           >
             Marketing Portfolio <br />
             <span 
+              className="hero-name-subtitle"
               style={{ 
                 color: 'var(--matcha-deep)', 
                 fontStyle: 'italic', 
                 fontFamily: 'var(--font-serif)',
-                textShadow: '0 4px 15px rgba(85, 122, 70, 0.15)'
+                textShadow: '0 3px 12px rgba(85, 122, 70, 0.12)'
               }}
             >
               Thao Lien Le
             </span>
           </h1>
 
-          <p 
+          <div 
+            className="hero-script-tagline font-script float-sway"
             style={{ 
-              fontSize: '1.15rem', 
-              color: 'var(--text-muted)', 
-              maxWidth: '680px', 
-              margin: '18px auto 0',
-              lineHeight: 1.65,
-              fontWeight: 400
+              fontSize: 'clamp(1.45rem, 2.8vw, 2rem)', 
+              color: 'var(--matcha-primary)', 
+              lineHeight: 1.4,
+              marginBottom: '14px'
             }}
           >
-            {profileInfo.vlogTagline}
+            Explore my work, my ideas, and the stories behind them - perhaps our next story begins here.
+          </div>
+          
+          <p 
+            className="hero-bio-quote"
+            style={{ 
+              fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', 
+              fontWeight: 600, 
+              color: 'var(--text-dark)', 
+              lineHeight: 1.6, 
+              maxWidth: '820px', 
+              margin: '0 auto 28px',
+              fontFamily: 'var(--font-serif)'
+            }}
+          >
+            {t('Đưa thương hiệu đến đúng nơi, chạm đúng người, biến những kết nối thành hành động.')}
           </p>
 
-          {/* Quick CTA Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginTop: '26px', flexWrap: 'wrap' }}>
-            <a href="#vlog-reels" className="btn-matcha-primary">
-              <span>Khám Phá Video Reels</span>
-              <span style={{ fontSize: '1.1rem' }}>🎬</span>
+          {/* Quick Jump Buttons */}
+          <div className="hero-quick-buttons" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <a href="#about-me" className="btn-matcha-primary" style={{ textDecoration: 'none', padding: '9px 24px', fontSize: '0.88rem' }}>
+              <span>{t('Một chút về mình')}</span>
             </a>
-            <a href="#photo-diary" className="btn-glass-pill">
-              <span>Xem Nhật Ký Ảnh (Photo Diary)</span>
-              <span style={{ fontSize: '1.1rem' }}>📸</span>
+            <a href="#skills-experience" className="btn-cute-pink" style={{ textDecoration: 'none', padding: '9px 24px', fontSize: '0.88rem' }}>
+              <span>{t('Kinh nghiệm và kỹ năng thực chiến')}</span>
+            </a>
+            <a href="#achievements" className="btn-glass-pill" style={{ textDecoration: 'none', padding: '9px 24px', fontSize: '0.88rem' }}>
+              <span>{t('Thành tựu nổi bật')}</span>
             </a>
           </div>
         </div>
 
         {/* ===================================================================
-            ETHEREAL SCRAPBOOK COLLAGE (FEATURING REAL PHOTOS FROM 'ẢNH')
+            SCRAPBOOK COLLAGE (FEATURING 3 BALANCED DIVERSE PHOTOS)
             =================================================================== */}
         <div 
+          className="hero-collage-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '24px',
-            alignItems: 'center',
+            maxWidth: '960px',
+            margin: '0 auto',
             position: 'relative'
           }}
         >
-          {/* Floating Sticker / Cloud 1 */}
+          {/* Floating Sticker */}
           <div 
-            className="float-slow"
+            className="hero-badge-tag float-slow"
             style={{
               position: 'absolute',
-              top: '-40px',
-              left: '4%',
+              top: '-24px',
+              left: '2%',
               zIndex: 10,
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
+              gap: '5px',
               background: 'rgba(255, 255, 255, 0.95)',
-              padding: '8px 18px',
+              padding: '6px 14px',
               borderRadius: '999px',
-              boxShadow: '0 8px 24px rgba(85, 122, 70, 0.15)',
+              boxShadow: '0 6px 18px rgba(85, 122, 70, 0.12)',
               border: '1px solid var(--border-matcha)'
             }}
           >
-            <span style={{ fontSize: '1.1rem' }}>✈️</span>
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--matcha-deep)' }}>
-              PASSION FOR TRAVEL & MARKETING
+            <span style={{ fontSize: '1rem' }}>✨</span>
+            <span style={{ fontSize: '0.74rem', fontWeight: 700, color: 'var(--matcha-deep)' }}>
+              CREATIVE MARKETING & BRAND GROWTH
             </span>
           </div>
 
-          {/* LEFT COLUMN: Polaroid 1 + Boarding Pass Widget (Col 1-4) */}
-          <div style={{ gridColumn: 'span 4' }}>
-            {/* Polaroid 1: Fairy Stream in Forest (p3.jpg) */}
+          {/* LEFT PHOTO: p20.jpg */}
+          <div className="hero-col-left">
             <div 
-              className="polaroid-frame float-slow"
+              className="polaroid-frame hero-polaroid-card float-slow"
               style={{
-                transform: 'rotate(-4deg)',
                 width: '100%',
-                marginBottom: '26px'
+                cursor: 'pointer',
+                paddingBottom: '14px'
               }}
-              onClick={() => handlePhotoClick(profileInfo.heroImages.fairyStream, "Nắng sớm xuyên tán rừng Trà Sư", "Suối Rừng Xanh")}
+              onClick={() => handlePhotoClick("/photos/p20.jpg", "", "")}
             >
               <div className="washi-tape-matcha" />
               <div style={{ aspectRatio: '4/5', overflow: 'hidden', borderRadius: '4px' }}>
                 <img 
-                  src={profileInfo.heroImages.fairyStream} 
-                  alt="Thảo Liên Lê bên suối rừng"
+                  src="/photos/p20.jpg" 
+                  alt="Thảo Liên Lê"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
-              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="font-script" style={{ fontSize: '1.5rem', color: 'var(--text-dark)' }}>
-                  Sun-drenched stream ⋆*
-                </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--matcha-deep)', fontWeight: 700 }}>
-                  🍃 DA LAT / AN GIANG
-                </span>
-              </div>
-            </div>
-
-            {/* Aesthetic Boarding Pass Widget */}
-            <div 
-              style={{
-                background: '#FFFFFF',
-                border: '1.5px dashed var(--matcha-sage)',
-                borderRadius: '16px',
-                padding: '16px 20px',
-                boxShadow: '0 10px 30px rgba(85, 122, 70, 0.1)',
-                position: 'relative'
-              }}
-              className="float-reverse"
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--matcha-deep)', letterSpacing: '1px' }}>
-                  BOARDING PASS · VLOG FLIGHT
-                </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--pink-deep)', fontWeight: 700 }}>
-                  TL-2026 ✈
-                </span>
-              </div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-dark)', fontFamily: 'var(--font-serif)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span>HAN</span>
-                <span style={{ color: 'var(--matcha-primary)', fontSize: '0.9rem' }}>➔</span>
-                <span>DLI</span>
-                <span style={{ color: 'var(--matcha-primary)', fontSize: '0.9rem' }}>➔</span>
-                <span>BKK</span>
-              </div>
-              <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                Hành trình sáng tạo nội dung & trải nghiệm văn hóa đa sắc màu.
-              </p>
             </div>
           </div>
 
-          {/* CENTER COLUMN: Hero Master Portrait (p29.jpg - Tra Su Green Boat) (Col 5-8) */}
-          <div style={{ gridColumn: 'span 4', textAlign: 'center', position: 'relative' }}>
+          {/* CENTER PHOTO: Master Portrait Arch (p11.jpg) */}
+          <div className="hero-col-center">
             {/* Cute Ribbon at Top Center */}
             <div 
-              className="sticker pulse-soft"
+              className="hero-arch-ribbon sticker pulse-soft"
               style={{
                 position: 'absolute',
-                top: '-26px',
+                top: '-22px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                fontSize: '2.4rem',
+                fontSize: '2.1rem',
                 zIndex: 10
               }}
             >
@@ -270,61 +210,59 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
 
             {/* Arch Master Photo Frame with Green & Gold Accents */}
             <div 
+              className="hero-arch-frame"
               style={{
                 position: 'relative',
-                borderRadius: '200px 200px 32px 32px',
                 overflow: 'hidden',
-                border: '6px solid #FFFFFF',
-                boxShadow: '0 28px 65px -10px rgba(59, 94, 43, 0.35), 0 0 0 2px var(--matcha-leaf)',
-                aspectRatio: '3 / 4.4',
                 cursor: 'pointer',
-                backgroundColor: 'var(--matcha-mist)'
+                backgroundColor: 'var(--pink-mist)'
               }}
-              onClick={() => handlePhotoClick(profileInfo.heroImages.traSuBoat, "Thuyền nan giữa rừng tràm Trà Sư", "An Giang")}
+              onClick={() => handlePhotoClick("/photos/p11.jpg", "Thảo Liên Lê", "")}
             >
               <img 
-                src={profileInfo.heroImages.traSuBoat} 
-                alt="Thảo Liên Lê trên thuyền rừng tràm"
-                style={{
-                  width: '100%',
-                  height: '100%',
+                src="/photos/p11.jpg" 
+                alt="Thảo Liên Lê"
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
                   objectFit: 'cover',
                   display: 'block',
-                  transition: 'transform 0.6s ease'
+                  transition: 'transform 0.5s ease'
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
               />
 
               {/* Location Badge Overlay */}
               <div 
+                className="hero-arch-badge"
                 style={{
                   position: 'absolute',
-                  bottom: '18px',
+                  bottom: '14px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: 'rgba(255, 255, 255, 0.92)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '8px 20px',
+                  background: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(8px)',
+                  padding: '6px 16px',
                   borderRadius: '999px',
-                  border: '1px solid var(--border-matcha)',
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                  border: '1px solid var(--border-pink)',
+                  boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
                   whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--matcha-deep)' }}>
-                  📍 Trà Sư Emerald Forest · Thao Lien
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--pink-deep)' }}>
+                  Thảo Liên Lê · Marketing Portfolio
                 </span>
               </div>
             </div>
 
-            {/* Wax Seal Badge Floating at Center-Right */}
+            {/* Wax Seal Badge */}
             <div 
               className="wax-seal-matcha float-slow"
               style={{
                 position: 'absolute',
-                bottom: '10px',
-                right: '-16px',
+                bottom: '6px',
+                right: '-12px',
                 zIndex: 10
               }}
             >
@@ -332,57 +270,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Polaroid 2 + Apple Notes Card (Col 9-12) */}
-          <div style={{ gridColumn: 'span 4' }}>
-            {/* Polaroid 2: Da Lat Pine Balcony (p15.jpg) */}
+          {/* RIGHT PHOTO: p29.jpg */}
+          <div className="hero-col-right">
             <div 
-              className="polaroid-frame float-slow"
+              className="polaroid-frame hero-polaroid-card float-slow"
               style={{
-                transform: 'rotate(4deg)',
                 width: '100%',
-                marginBottom: '26px'
+                cursor: 'pointer',
+                paddingBottom: '14px'
               }}
-              onClick={() => handlePhotoClick(profileInfo.heroImages.daLatCafe, "Ban công Tiệm Cà Phê Nhà Của Thông", "Đà Lạt")}
+              onClick={() => handlePhotoClick("/photos/p29.jpg", "", "")}
             >
               <div className="washi-tape-pink" />
               <div style={{ aspectRatio: '4/5', overflow: 'hidden', borderRadius: '4px' }}>
                 <img 
-                  src={profileInfo.heroImages.daLatCafe} 
-                  alt="Thảo Liên Lê tại Nhà Của Thông Đà Lạt"
+                  src="/photos/p29.jpg" 
+                  alt="Thảo Liên Lê"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
-              </div>
-              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="font-script" style={{ fontSize: '1.5rem', color: 'var(--text-dark)' }}>
-                  Pine forest breeze ⋆*
-                </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--pink-deep)', fontWeight: 700 }}>
-                  🌲 ĐÀ LẠT CAFE
-                </span>
-              </div>
-            </div>
-
-            {/* Apple Notes Widget */}
-            <div className="apple-notes-card float-reverse">
-              <div className="apple-notes-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>📌</span>
-                  <span>From Thảo Liên's Desk</span>
-                </div>
-                <span style={{ fontSize: '0.75rem', color: 'var(--matcha-leaf)', fontWeight: 700 }}>
-                  2026 ROADMAP
-                </span>
-              </div>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-dark)', lineHeight: 1.6, fontStyle: 'italic' }}>
-                "{profileInfo.quote}"
-              </p>
-              <div style={{ marginTop: '14px', paddingTop: '10px', borderTop: '1px solid rgba(85, 122, 70, 0.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.78rem', color: 'var(--matcha-deep)', fontWeight: 600 }}>
-                  Strategic Storyteller
-                </span>
-                <span className="font-script" style={{ fontSize: '1.5rem', color: 'var(--matcha-primary)' }}>
-                  Thao Lien Le
-                </span>
               </div>
             </div>
           </div>
@@ -390,14 +295,180 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectPhoto }) => {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          div[style*="grid-template-columns: repeat(12, 1fr)"] {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 40px !important;
+        /* Desktop styles for hero collage */
+        .hero-collage-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          gap: 20px;
+          align-items: center;
+          width: 100%;
+        }
+        .hero-col-left {
+          grid-column: span 4;
+        }
+        .hero-col-left .polaroid-frame {
+          transform: rotate(-4deg);
+        }
+        .hero-col-center {
+          grid-column: span 4;
+          text-align: center;
+          position: relative;
+        }
+        .hero-arch-frame {
+          border-radius: 160px 160px 24px 24px;
+          border: 5px solid #FFFFFF;
+          box-shadow: 0 20px 50px -8px rgba(216, 78, 116, 0.3), 0 0 0 1.5px var(--border-pink);
+          aspect-ratio: 3 / 4.1;
+        }
+        .hero-col-right {
+          grid-column: span 4;
+        }
+        .hero-col-right .polaroid-frame {
+          transform: rotate(4deg);
+        }
+
+        /* Mobile styles: ensure title is not cut by navbar, font sizes are generous and clear, and 3 photos display side-by-side in one row */
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 92px !important;
+            padding-bottom: 24px !important;
           }
-          div[style*="grid-column: span 4"] {
+          .hero-text-banner {
+            margin-bottom: 20px !important;
+            overflow: visible !important;
+          }
+          .hero-main-title {
+            font-size: clamp(1.95rem, 8vw, 2.55rem) !important;
+            line-height: 1.16 !important;
+            margin-bottom: 6px !important;
+            letter-spacing: -0.4px !important;
+            overflow: visible !important;
+          }
+          .hero-name-subtitle {
+            font-size: clamp(1.8rem, 7.5vw, 2.35rem) !important;
+            display: inline-block !important;
+            margin-top: 2px !important;
+            line-height: 1.2 !important;
+          }
+          .hero-script-tagline {
+            font-size: clamp(1.36rem, 5.5vw, 1.8rem) !important;
+            color: var(--matcha-deep) !important;
+            margin-bottom: 10px !important;
+            line-height: 1.45 !important;
+            padding: 2px 6px !important;
+            overflow: visible !important;
+            letter-spacing: 0.2px !important;
+          }
+          .hero-bio-quote {
+            font-size: clamp(1.05rem, 4.2vw, 1.25rem) !important;
+            line-height: 1.6 !important;
+            font-weight: 600 !important;
+            margin: 0 auto 16px !important;
+            padding: 0 10px !important;
+            max-width: 92% !important;
+            box-sizing: border-box !important;
+            overflow: visible !important;
+          }
+          .hero-quick-buttons {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 20px !important;
+          }
+          .hero-quick-buttons a {
+            padding: 7px 16px !important;
+            font-size: 0.8rem !important;
+            border-radius: 999px !important;
+          }
+
+          /* DÀN 3 ẢNH ĐẦU TIÊN CÙNG HÀNG NGANG TRÊN ĐIỆN THOẠI (KHÔNG BAO GIỜ RỚT DÒNG) */
+          .hero-collage-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 6px !important;
             width: 100% !important;
+            max-width: 375px !important;
+            margin: 0 auto !important;
+            padding: 0 4px !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+          }
+          .hero-badge-tag {
+            display: none !important;
+          }
+          .hero-col-left {
+            display: block !important;
+            flex: 0 1 29% !important;
+            width: 29% !important;
+            max-width: 102px !important;
+            min-width: 0 !important;
+            order: 1 !important;
+            margin: 0 !important;
+          }
+          .hero-col-center {
+            display: block !important;
+            flex: 0 1 40% !important;
+            width: 40% !important;
+            max-width: 140px !important;
+            min-width: 0 !important;
+            order: 2 !important;
+            margin: 0 !important;
+            position: relative !important;
+          }
+          .hero-col-right {
+            display: block !important;
+            flex: 0 1 29% !important;
+            width: 29% !important;
+            max-width: 102px !important;
+            min-width: 0 !important;
+            order: 3 !important;
+            margin: 0 !important;
+          }
+
+          .hero-col-left .polaroid-frame {
+            transform: rotate(-2.5deg) !important;
+            padding: 4px 4px 10px !important;
+            border-radius: 6px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .hero-col-right .polaroid-frame {
+            transform: rotate(2.5deg) !important;
+            padding: 4px 4px 10px !important;
+            border-radius: 6px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .hero-arch-frame {
+            border-radius: 62px 62px 14px 14px !important;
+            border: 3px solid #FFFFFF !important;
+            box-shadow: 0 8px 22px -3px rgba(216, 78, 116, 0.35) !important;
+            width: 100% !important;
+          }
+          .hero-arch-ribbon {
+            top: -14px !important;
+            font-size: 1.25rem !important;
+          }
+          .hero-arch-badge {
+            display: none !important;
+          }
+          .wax-seal-matcha {
+            width: 22px !important;
+            height: 22px !important;
+            font-size: 0.58rem !important;
+            bottom: -2px !important;
+            right: -2px !important;
+          }
+          .washi-tape-matcha, .washi-tape-pink {
+            width: 26px !important;
+            height: 9px !important;
+            top: -5px !important;
           }
         }
       `}</style>

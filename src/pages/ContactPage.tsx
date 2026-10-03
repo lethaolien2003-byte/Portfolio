@@ -127,7 +127,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{ position: 'relative' }}>
                     <div style={{ width: '46px', height: '46px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--pink-primary)' }}>
-                      <img src="/photos/p5.jpg" alt="Avatar Thảo Liên" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img src="/photos/p11.jpg" alt="Avatar Thảo Liên" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <span 
                       style={{

@@ -10,12 +10,12 @@ import {
 
 export const profileInfo: ProfileInfo = {
   name: "Thảo Liên Lê",
-  siteTitle: "Marketing Portfolio Thao Lien Le",
-  role: "Creative Marketing Strategist & Visual Storyteller",
-  vlogTagline: "Chiến lược tiếp thị giàu cảm xúc hòa cùng lăng kính điện ảnh, sắc xanh thiên nhiên và những chuyến đi mơ mộng.",
-  location: "Hà Nội · TP. Hồ Chí Minh · Đà Lạt · Bangkok",
+  siteTitle: "Marketing Portfolio - Thảo Liên Lê",
+  role: "Marketing Specialist · Growth & Brand Strategist",
+  vlogTagline: "Explore my work, my ideas, and the stories behind them - perhaps our next story begins here.",
+  location: "TP. Hồ Chí Minh",
   instagramHandle: "@thaolien.journey",
-  quote: "Biến từng khung hình đời thường thành câu chuyện thương hiệu chạm đến trái tim người xem.",
+  quote: "Đưa thương hiệu đến đúng nơi, chạm đúng người, biến những kết nối thành hành động.",
   heroImages: {
     traSuBoat: "/photos/p29.jpg",      // Chèo thuyền rừng tràm Trà Sư xanh mướt
     fairyStream: "/photos/p3.jpg",      // Nắng xuyên tán cây, suối rừng bay bổng
@@ -27,6 +27,159 @@ export const profileInfo: ProfileInfo = {
     pinkDress: "/photos/p5.jpg"         // Đầm yếm hồng pastel tiểu thư
   }
 };
+
+export const homeContent = {
+  heroTagline: "Explore my work, my ideas, and the stories behind them - perhaps our next story begins here.",
+  heroMission: "Đưa thương hiệu đến đúng nơi, chạm đúng người, biến những kết nối thành hành động.",
+  aboutMe: {
+    title: "Một chút về mình",
+    greeting: "Xin chào, mình là Thao Lien Le (hay Tali).",
+    experience: "Mình có hơn 3 năm làm Marketing trong môi trường SMEs cho mình cơ hội được “chạm” vào nhiều khía cạnh: từ lên plan, đóng góp tối ưu sản phẩm, làm content, edit video, chạy Ads đến biên tập và tổ chức sự kiện.",
+    philosophy: "Và cũng chính môi trường đó dạy mình một điều: Marketing không phải lúc nào cũng bắt đầu với nguồn lực lớn, mà là tìm cách tận dụng nguồn lực có hạn để đưa thương hiệu đến đúng thị trường mục tiêu và tạo ra chuyển đổi tốt.",
+    university: "Đại học Kinh tế TP.HCM (UEH)",
+    honor: "Tốt nghiệp Xuất sắc",
+    major: "QTKD",
+    gpa: "3.81 / 4.0"
+  },
+  skills: [
+    {
+      id: "skill-1",
+      title: "Xây dựng và phát triển kênh TikTok từ con số 0",
+      desc: "Từ định hướng nội dung đến triển khai video.",
+      icon: "🎵",
+      colorScheme: "pink" as const
+    },
+    {
+      id: "skill-2",
+      title: "Lập kế hoạch Marketing",
+      desc: "Nghiên cứu thị trường, phân tích khách hàng mục tiêu, xác định hướng truyền thông và nội dung theo từng giai đoạn.",
+      icon: "📊",
+      colorScheme: "matcha" as const
+    },
+    {
+      id: "skill-3",
+      title: "Sáng tạo nội dung video",
+      desc: "Lên ý tưởng, viết kịch bản, tham gia ghi hình và định hướng dựng video.",
+      icon: "🎬",
+      colorScheme: "pink" as const
+    },
+    {
+      id: "skill-4",
+      title: "Booking và triển khai KOL/UGC",
+      desc: "Định hướng nội dung cho Creator phù hợp với kế hoạch và thông điệp của sản phẩm.",
+      icon: "🤝",
+      colorScheme: "matcha" as const
+    },
+    {
+      id: "skill-5",
+      title: "Thiết kế bằng AI",
+      desc: "Thực hiện Social Post và Profile công ty bằng AI.",
+      icon: "✨",
+      colorScheme: "pink" as const
+    },
+    {
+      id: "skill-6",
+      title: "Chạy quảng cáo",
+      desc: "Định hướng nội dung và lên chiến dịch chạy quảng cáo sản phẩm.",
+      icon: "🚀",
+      colorScheme: "matcha" as const
+    }
+  ],
+  achievements: [
+    {
+      id: "ach-1",
+      category: "Xây kênh TikTok từ con số 0",
+      highlight: "Đạt gần 700 tin nhắn tự nhiên mỗi tháng",
+      colorScheme: "matcha" as const
+    },
+    {
+      id: "ach-2",
+      category: "Video Reels",
+      highlight: "Đạt nhiều video viral trên 100k view",
+      colorScheme: "pink" as const
+    },
+    {
+      id: "ach-3",
+      category: "Tối ưu chi phí Ads",
+      highlight: "6 triệu ngân sách → 300+ tin nhắn → gần 300 TRIỆU doanh thu",
+      colorScheme: "matcha" as const
+    },
+    {
+      id: "ach-4",
+      category: "Đưa AI vào công việc Marketing",
+      highlight: "Giúp doanh nghiệp tối ưu nhân sự và đẩy nhanh quá trình sản xuất nội dung",
+      colorScheme: "pink" as const
+    }
+  ]
+};
+
+export interface PartnerBrand {
+  id: string;
+  category: string;
+  name: string;
+  logo: string;
+  bgColor?: string;
+  isDarkLogo?: boolean;
+}
+
+export const partnerBrands: PartnerBrand[] = [
+  {
+    id: "brand-happybook",
+    category: "Du lịch",
+    name: "HappyBook",
+    logo: "/brands/happybook.jpg",
+    bgColor: "#FFFFFF"
+  },
+  {
+    id: "brand-cilove",
+    category: "Áo cưới",
+    name: "CiLove Bridal",
+    logo: "/brands/cilove.jpg",
+    bgColor: "#FAF4ED"
+  },
+  {
+    id: "brand-colorbook",
+    category: "In ấn",
+    name: "ColorBook",
+    logo: "/brands/colorbook.jpg",
+    bgColor: "#FFF8D6"
+  },
+  {
+    id: "brand-wilson",
+    category: "Nha khoa",
+    name: "Wilson Dentistry",
+    logo: "/brands/wilson.jpg",
+    bgColor: "#142646",
+    isDarkLogo: true
+  },
+  {
+    id: "brand-yen-huynh",
+    category: "Yến sào",
+    name: "Yến sào Yến Huỳnh",
+    logo: "/brands/yen-huynh.jpg",
+    bgColor: "#FFFFFF"
+  },
+  {
+    id: "brand-nguyen-nguyen",
+    category: "Thể thao",
+    name: "Nguyễn Nguyễn",
+    logo: "/brands/nguyen-nguyen.png",
+    bgColor: "#0F0F0F",
+    isDarkLogo: true
+  }
+];
+
+export const navCategories = [
+  { id: 'home', title: 'Trang chủ', icon: '🌸', desc: 'Giới thiệu tổng quan, hồ sơ năng lực & thành tựu', badge: 'Overview' },
+  { id: 'tiktok', title: 'Xây kênh TikTok từ số 0', icon: '🎵', desc: 'Định hướng nội dung, tăng trưởng 700+ tin nhắn tự nhiên', badge: 'Viral Growth' },
+  { id: 'video-reels', title: 'Video reels', icon: '🎬', desc: 'Tuyển tập video ngắn viral 100k+ views trên đa nền tảng', badge: '100k+ Views' },
+  { id: 'video-ugc', title: 'Video UGC', icon: '📱', desc: 'Triển khai User Generated Content chân thực & chuyển đổi', badge: 'Creator Hub' },
+  { id: 'marketing-plan', title: 'Kế hoạch Marketing', icon: '📊', desc: 'Nghiên cứu thị trường & chiến lược truyền thông giai đoạn', badge: 'Strategy' },
+  { id: 'zalo-oa', title: 'Zalo OA', icon: '💬', desc: 'Xây dựng phễu chăm sóc khách hàng & tương tác tự động', badge: 'Retention' },
+  { id: 'ads', title: 'Ads', icon: '📈', desc: 'Tối ưu ngân sách 6TR mang lại gần 300TR doanh thu', badge: 'High ROI' },
+  { id: 'design-ai', title: 'Design AI', icon: '✨', desc: 'Thiết kế Social Post & Profile công ty tối ưu bằng AI', badge: 'AI Innovation' },
+  { id: 'personal-brand', title: 'Xây thương hiệu cá nhân', icon: '👑', desc: 'Định vị phong cách, lan tỏa giá trị độc bản bền vững', badge: 'Personal Branding' }
+] as const;
 
 export const vlogReels: VlogReelItem[] = [
   {

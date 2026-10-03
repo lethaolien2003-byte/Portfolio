@@ -1,30 +1,33 @@
 import React from 'react';
-import { profileInfo } from '../../data/portfolioData.ts';
 import { NavPage } from '../../types/portfolio.ts';
+import { useLanguage } from '../../context/LanguageContext.tsx';
 
 interface FooterProps {
   onNavigate?: (page: NavPage) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navLinks: { id: NavPage; label: string; icon: string }[] = [
-    { id: 'home', label: 'Trang Chủ', icon: '🌸' },
-    { id: 'video-reels', label: 'Video Reels', icon: '🎬' },
-    { id: 'photo-diary', label: 'Photo Diary', icon: '📸' },
-    { id: 'roadmap', label: 'Hành Trình', icon: '🗺️' },
-    { id: 'services', label: 'Dịch Vụ', icon: '✨' },
-    { id: 'contact', label: 'Direct Message', icon: '✉' }
+  const navLinks: { id: NavPage; label: string }[] = [
+    { id: 'home', label: 'Trang chủ' },
+    { id: 'tiktok', label: 'Xây kênh TikTok từ số 0' },
+    { id: 'video-reels', label: 'Content Facebook' },
+    { id: 'video-ugc', label: 'Video UGC' },
+    { id: 'marketing-plan', label: 'Kế hoạch Marketing' },
+    { id: 'ads', label: 'Ads' },
+    { id: 'design-ai', label: 'Design AI' }
   ];
 
   return (
     <footer 
       style={{
         borderTop: '1.5px solid var(--border-pink)',
-        padding: '50px 24px 34px',
+        padding: '24px 20px 18px',
         backgroundColor: '#FFFFFF',
         position: 'relative',
         zIndex: 1
@@ -32,11 +35,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     >
       <div 
         style={{
-          maxWidth: '1260px',
+          maxWidth: '1160px',
           margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
-          gap: '30px'
+          gap: '14px'
         }}
       >
         <div 
@@ -45,66 +48,55 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '24px'
+            gap: '16px'
           }}
         >
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '1.3rem' }}>🍃</span>
-              <span style={{ fontSize: '1.2rem', marginLeft: '-4px' }}>🎀</span>
-              <span className="font-serif" style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--matcha-deep)' }}>
-                {profileInfo.siteTitle}
-              </span>
-            </div>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', maxWidth: '540px', lineHeight: 1.65 }}>
-              Thiết kế riêng cho Thảo Liên Lê phong cách Travel Vlog & Scrapbook mỹ cảm. Hòa quyện cân bằng giữa sắc xanh Matcha và sắc hồng Rose Petals.
-            </p>
-          </div>
-
-          {/* Social Tags & Back to Top */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span style={{ fontSize: '0.88rem', color: 'var(--pink-deep)', fontWeight: 700 }}>
-              {profileInfo.instagramHandle} · Marketing & Travel Vlog
+          {/* Brand Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.2rem' }}>🍃</span>
+            <span className="font-serif" style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--matcha-deep)' }}>
+              Thảo Liên Lê · Marketing Portfolio
             </span>
-
-            <button 
-              onClick={scrollToTop}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '999px',
-                background: 'var(--pink-soft)',
-                border: '1.5px solid var(--border-pink)',
-                color: 'var(--pink-deep)',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                cursor: 'pointer',
-                boxShadow: '0 4px 12px rgba(255, 117, 151, 0.15)',
-                transition: 'all 0.25s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--pink-primary)';
-                e.currentTarget.style.color = '#fff';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--pink-soft)';
-                e.currentTarget.style.color = 'var(--pink-deep)';
-              }}
-            >
-              <span>Lên Đầu Trang</span>
-              <span>↑</span>
-            </button>
           </div>
+
+          {/* Back to Top */}
+          <button 
+            onClick={scrollToTop}
+            style={{
+              padding: '8px 18px',
+              borderRadius: '999px',
+              background: 'var(--pink-soft)',
+              border: '1px solid var(--border-pink)',
+              color: 'var(--pink-deep)',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(255, 117, 151, 0.15)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--pink-primary)';
+              e.currentTarget.style.color = '#fff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--pink-soft)';
+              e.currentTarget.style.color = 'var(--pink-deep)';
+            }}
+          >
+            <span>{t('Lên Đầu Trang')}</span>
+            <span>↑</span>
+          </button>
         </div>
 
-        {/* Quick Multi-Site Nav Links at the Bottom of Footer */}
+        {/* Clean nav links without icons */}
         {onNavigate && (
           <div 
             style={{
-              borderTop: '1px dashed rgba(85, 122, 70, 0.2)',
-              paddingTop: '20px',
+              borderTop: '1px solid rgba(85, 122, 70, 0.12)',
+              paddingTop: '16px',
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
@@ -113,8 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               fontSize: '0.82rem'
             }}
           >
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-              <span style={{ fontWeight: 800, color: 'var(--matcha-deep)' }}>DANH MỤC SITE:</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
               {navLinks.map((item) => (
                 <button
                   key={item.id}
@@ -129,9 +120,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     fontSize: '0.82rem',
                     fontWeight: 600,
                     color: 'var(--text-muted)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
+                    padding: '2px 0',
                     transition: 'color 0.2s'
                   }}
                   onMouseEnter={(e) => {
@@ -141,13 +130,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     e.currentTarget.style.color = 'var(--text-muted)';
                   }}
                 >
-                  <span>{item.icon}</span>
-                  <span>{item.label}</span>
+                  {t(item.label)}
                 </button>
               ))}
             </div>
 
-            <span style={{ color: 'var(--text-soft)' }}>
+            <span style={{ color: 'var(--text-soft)', fontSize: '0.8rem' }}>
               © 2026 Thao Lien Le. All rights reserved.
             </span>
           </div>

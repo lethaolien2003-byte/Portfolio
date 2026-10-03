@@ -8,16 +8,26 @@ import { NavPage, VlogReelItem } from './types/portfolio.ts';
 
 // Dedicated Sub-Sites / Pages
 import { HomePage } from './pages/HomePage.tsx';
-import { VideoReelsPage } from './pages/VideoReelsPage.tsx';
-import { PhotoDiaryPage } from './pages/PhotoDiaryPage.tsx';
-import { RoadmapPage } from './pages/RoadmapPage.tsx';
-import { ServicesPage } from './pages/ServicesPage.tsx';
-import { ContactPage } from './pages/ContactPage.tsx';
+import { TikTokChannelsPage } from './pages/TikTokChannelsPage.tsx';
+import { ContentFacebookPage } from './pages/ContentFacebookPage.tsx';
+import { VideoUGCPage } from './pages/VideoUGCPage.tsx';
+import { MarketingPlanPage } from './pages/MarketingPlanPage.tsx';
+import { ContentAdsPage } from './pages/ContentAdsPage.tsx';
+import { DesignAIPage } from './pages/DesignAIPage.tsx';
+import { CategoryPlaceholderPage } from './pages/CategoryPlaceholderPage.tsx';
 
 export const App: React.FC = () => {
   const getPageFromHash = (): NavPage => {
     const hash = window.location.hash.replace(/^#\/?/, '');
-    const validPages: NavPage[] = ['home', 'video-reels', 'photo-diary', 'roadmap', 'services', 'contact'];
+    const validPages: NavPage[] = [
+      'home', 
+      'tiktok', 
+      'video-reels', 
+      'video-ugc', 
+      'marketing-plan', 
+      'ads', 
+      'design-ai'
+    ];
     if (validPages.includes(hash as NavPage)) {
       return hash as NavPage;
     }
@@ -31,16 +41,36 @@ export const App: React.FC = () => {
   // Synchronize state with browser hash navigation
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentPage(getPageFromHash());
+      const page = getPageFromHash();
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Luôn cuộn lên đầu trang ngay lập tức khi chuyển danh mục
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    // Đảm bảo cuộn lên đầu cả khi component mới hoàn tất render
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 10);
+    return () => clearTimeout(timer);
+  }, [currentPage]);
+
   const handleNavigate = (page: NavPage) => {
     setCurrentPage(page);
     window.location.hash = `#/${page}`;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   };
 
   return (
@@ -48,7 +78,7 @@ export const App: React.FC = () => {
       {/* 3D Floating Matcha Leaves & Sakura Petals Canvas */}
       <Petals3DCanvas />
 
-      {/* Floating Pill Header Navigation with Site-Switching */}
+      {/* Floating Pill Header Navigation with 9 Categories */}
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 
       {/* Main Content: Switches to Dedicated Site Views on Menu Click */}
@@ -61,35 +91,51 @@ export const App: React.FC = () => {
           />
         )}
 
+        {currentPage === 'tiktok' && (
+          <TikTokChannelsPage 
+            onNavigate={handleNavigate} 
+          />
+        )}
+
         {currentPage === 'video-reels' && (
-          <VideoReelsPage 
-            onNavigate={handleNavigate} 
-            onSelectReel={(r) => setSelectedReel(r)} 
-          />
-        )}
-
-        {currentPage === 'photo-diary' && (
-          <PhotoDiaryPage 
-            onNavigate={handleNavigate} 
-            onSelectPhoto={(p) => setSelectedPhoto(p)} 
-          />
-        )}
-
-        {currentPage === 'roadmap' && (
-          <RoadmapPage 
-            onNavigate={handleNavigate} 
-            onSelectPhoto={(p) => setSelectedPhoto(p)} 
-          />
-        )}
-
-        {currentPage === 'services' && (
-          <ServicesPage 
+          <ContentFacebookPage 
             onNavigate={handleNavigate} 
           />
         )}
 
-        {currentPage === 'contact' && (
-          <ContactPage 
+        {currentPage === 'video-ugc' && (
+          <VideoUGCPage 
+            onNavigate={handleNavigate} 
+          />
+        )}
+
+        {currentPage === 'marketing-plan' && (
+          <MarketingPlanPage 
+            onNavigate={handleNavigate} 
+          />
+        )}
+
+        {currentPage === 'ads' && (
+          <ContentAdsPage 
+            onNavigate={handleNavigate} 
+          />
+        )}
+
+        {currentPage === 'design-ai' && (
+          <DesignAIPage 
+            onNavigate={handleNavigate} 
+          />
+        )}
+
+        {currentPage !== 'home' && 
+         currentPage !== 'tiktok' && 
+         currentPage !== 'video-reels' && 
+         currentPage !== 'video-ugc' && 
+         currentPage !== 'marketing-plan' && 
+         currentPage !== 'ads' && 
+         currentPage !== 'design-ai' && (
+          <CategoryPlaceholderPage 
+            pageId={currentPage} 
             onNavigate={handleNavigate} 
           />
         )}
